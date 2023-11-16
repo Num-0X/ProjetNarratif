@@ -5,7 +5,7 @@
         internal static bool isKeyCollected;
 
         internal override string CreateDescription() =>
-@"Dans le grenier, il y fait noir et froid.
+@"Dans le grenier, il y fait noir et froid.3
 Un coffre est verrouillé avec un code [????].
 Tu peux revenir dans ta [chambre].
 ";

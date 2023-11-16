@@ -3,7 +3,7 @@
     internal class Bedroom : Room
     {
         internal override string CreateDescription() =>
-@"Tu es dans ta chambre à dormir.
+@"Tu te lève ce matin..
 La [porte] qui mène au salon est devant toi.
 Ta [toilette] privée est à ta gauche.
 Dans ton armoire, tu aperçois le [grenier]
