@@ -1,32 +1,81 @@
-﻿namespace ProjetNarratif.Rooms
+﻿using System;
+
+namespace ProjetNarratif.Rooms
 {
-    internal class Bedroom : Room
+    internal class Forest : Room
     {
+        bool PickSword, PickArc, PickHoney;
+
         internal override string CreateDescription() =>
-@"Tu te lève ce matin..
-La [porte] qui mène au salon est devant toi.
-Ta [toilette] privée est à ta gauche.
-Dans ton armoire, tu aperçois le [grenier]
-";
+      @"Tu te retrouve dans un nouveau monde infesté de créature dangeureuses.
+      À ton réveille, tu te retrouve dans la fôret. En te prommenant, tu vois un [homme] assomé et blessé sur un tronc d'arbre.
+       Et un peu plus loin, à l'autre côté de la rivière séparée par un pont fragile, tu aperçois un [elfe] dans le même état que l'autre. Chacun d'eux porte une arme.
+      L'homme porte une épée et l'autre un arc. Il sera toutefois risqué de vouloir les deux.
+      Tu devra choisir lequel prendre en premier si tu veux te raprocher de ces deux personnages inconnus.
+
+        ";
+        
 
         internal override void  ReceiveChoice(string choice)
         {
+           
+
             switch (choice)
+
             {
-                case "toilette":
-                    Console.WriteLine("Tu entres dans la toilette.");
-                    Game.Transition<Bathroom>();
+
+                case "homme":
+                    
+                    char option;
+                   Game.épée = true;
+                    Game.cuirasse = true;
+                    Game.inventaire.Add("épée " + " cuirasse");
+                   
+                    Console.WriteLine("Tu te raprocche de l'humain. Tu t'équipes de son épée et de sa cuirasse. Le reste des ses équpements sont en piteux état."
+                        + "Sûrement à cause d'un monstre!"+
+                        "Tu gagne 5 point d'attaque et 5 point de défense");
+                    {
+                        Console.WriteLine(Game.Atk+ 10 + " Atk");
+                        Console.WriteLine(Game.Déf + 10 + " Déf");
+                    }
+
+                    Console.WriteLine("\tEntrez '1' pour continuer ton chemin.\t Tap '2' pour risquer de traverser " +
+                        "le pont pour allez récupérer l'arc de l'elfe");
+                    Console.WriteLine("Entrez votre choix: ");
+                    option= Convert.ToChar(Console.ReadLine());
+
+                    switch (option)
+                    {
+                        case '1':
+                            Game.Transition<HuntRoom>();
+
+                            break;
+                            
+                        case '2':
+                             Random random = new Random();
+                            double chance = random.NextDouble();
+                            if (chance < 0.9)
+                            {
+                                Console.WriteLine("Malgré le craquement des planches de bois, tu arrives à traverser de justesse");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Arrivée vers la fin le pont s'éffondre.\n Tu perd des points de vie");
+                            }
+
+
+                            Console.WriteLine();
+                            break;
+                    }
+
+
+                    
                     break;
-                case "porte":
-                    if (!AtticRoom.isKeyCollected)
-                    {
-                        Console.WriteLine("La porte est verrouillée.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Tu ouvres la porte avec ta clé et tu sors de ta chambre.");
-                        Game.Finish();
-                    }
+                case "elfe":                   
+                  {
+                        Console.WriteLine("");
+                       
+                  }
                     break;
                 case "grenier":
                     Console.WriteLine("Tu montes dans le grenier.");

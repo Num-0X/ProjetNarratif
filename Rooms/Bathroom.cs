@@ -20,7 +20,7 @@ Tu peux revenir dans ta [chambre].
                     break;
                 case "chambre":
                     Console.WriteLine("Tu retournes dans ta chambre.");
-                    Game.Transition<Bedroom>();
+                    Game.Transition<Forest>();
                     break;
                 default:
                     Console.WriteLine("Commande invalide.");
